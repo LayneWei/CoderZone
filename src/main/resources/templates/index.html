@@ -32,12 +32,11 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
-            <div class="nav-item">
+            <div th:if="${session.user==null}" class="nav-item">
                 <a class="nav-item " href="https://github.com/login/oauth/authorize?client_id=e8e7f530973f2ab0fcf3&redirect_uri=http://localhost:8886/callback&scope=user&state=1" tabindex="-1" aria-disabled="true">Log in</a>
             </div>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    My account
+            <div th:unless="${session.user==null}" class="nav-item dropdown">
+                <a th:text="${session.user.getName()}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Message</a>
