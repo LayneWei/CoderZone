@@ -10,7 +10,8 @@
  [Bootstrap](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys)  
  [Github OAuth](https://docs.github.com/en/developers/apps/building-oauth-apps)  
  [Spring Framework](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/index.html)  
- [MyBatis](https://mybatis.org/spring/getting-started.html)
+ [MyBatis](https://mybatis.org/spring/getting-started.html)  
+ [Flyway](https://flywaydb.org/getstarted/firststeps/maven)
 
 ## Tool
  [Git](https://git-scm.com/downloads)  
@@ -39,9 +40,11 @@ create table USER
 ##### 1.2 Re-direct back to url with code
 ##### 1.3 Visit GitHub access_token API via code and return access_token
 ##### 1.4 Visit GitHub user API via access_token to get user info
+##### 1.5 Store user info to cookie to maintain loged-in status
 
-### 2. Database connection
+### 2. Database connection and management
 ##### 2.1 Initialize and connect to H2 database
 ##### 2.2 Incorporate MyBatis for inserting data
+##### 2.3 Use Flayway to update database
 
 
