@@ -7,7 +7,6 @@ import okhttp3.*;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.rmi.server.ExportException;
 
 /**
  * @author laynewei
@@ -17,6 +16,8 @@ import java.rmi.server.ExportException;
 @Component
 public class GitHubProvider {
     public String getAccessToken(AccessTokenDTO accessTokenDTO){
+        /* @source https://square.github.io/okhttp/
+        *  use okhttp to get a url */
         MediaType mediaType = MediaType.get("application/json; charset=utf-8");
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(mediaType,JSON.toJSONString(accessTokenDTO));
@@ -24,6 +25,7 @@ public class GitHubProvider {
                     .url("https://github.com/login/oauth/access_token")
                     .post(body)
                     .build();
+            /* get token information after response */
             try (Response response = client.newCall(request).execute()) {
                 String string = response.body().string();
                 String[] split = string.split("&");
@@ -36,10 +38,13 @@ public class GitHubProvider {
     }
 
     public GitHubUser getUser(String access_token){
+        /* @source https://square.github.io/okhttp/
+        * use okhttp to post to a server */
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://api.github.com/user"+"?access_token="+access_token)
                 .build();
+        /* get github user information and use fastjson to read and store in GithubUser class */
         try {
             Response response = client.newCall(request).execute();
             String string =response.body().string();

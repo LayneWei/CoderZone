@@ -4,6 +4,7 @@ package life.leetcoder.coderzone.dto;
  * @author laynewei
  * @date 9/18/20 10:37 PM
  * @e-mail lengning_wei@berkeley.edu
+ * @description Store accesstokenDTO from github
  */
 public class AccessTokenDTO {
     private String client_id;

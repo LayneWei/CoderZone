@@ -11,13 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 /**
  * @author laynewei
  * @date 9/18/20 10:35 PM
  * @e-mail lengning_wei@berkeley.edu
+ * @description authorize user to log in and store cookie
  */
 @Controller
 public class AuthorizeController {
@@ -39,7 +41,8 @@ public class AuthorizeController {
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
-                           HttpServletRequest request) {
+                           HttpServletResponse response) {
+        /* store accesstokenDTO info from github */
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
         accessTokenDTO.setClient_id(clientId);
@@ -47,16 +50,20 @@ public class AuthorizeController {
         accessTokenDTO.setRedict_url(redirectUrl);
         accessTokenDTO.setState(state);
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
+        /* use accesstokenDTO to get User */
         GitHubUser githubUser = gitHubProvider.getUser(accessToken);
         if (githubUser != null) {
+            /* store user information to database*/
             User user = new User();
             user.setAccountId(String.valueOf(githubUser.getName()));
             user.setName(githubUser.getName());
-            user.setToken(UUID.randomUUID().toString());
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
             userMapper.insert(user);
-            request.getSession().setAttribute("user", githubUser);
+            /* add cookie for maintaining log-in state */
+            response.addCookie(new Cookie("token",token));
             return "redirect:/";
         } else {
             return "redirect:/";

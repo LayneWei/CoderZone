@@ -4,6 +4,7 @@ package life.leetcoder.coderzone.dto;
  * @author laynewei
  * @time 9/19/20 1:45 AM
  * @e-mail lengning_wei@berkeley.edu
+ * @description store GitHubUser information from json
  */
 public class GitHubUser {
     private long id;

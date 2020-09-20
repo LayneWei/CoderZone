@@ -4,6 +4,7 @@ package life.leetcoder.coderzone.model;
  * @author laynewei
  * @time 9/19/20 10:44 AM
  * @e-mail lengning_wei@berkeley.edu
+ * @description store user information in database
  */
 public class User {
     private Integer id;
