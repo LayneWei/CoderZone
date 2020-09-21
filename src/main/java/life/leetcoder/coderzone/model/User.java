@@ -1,11 +1,14 @@
 package life.leetcoder.coderzone.model;
 
+import lombok.Data;
+
 /**
  * @author laynewei
  * @time 9/19/20 10:44 AM
  * @e-mail lengning_wei@berkeley.edu
  * @description store user information in database
  */
+@Data
 public class User {
     private Integer id;
     private String name;
@@ -13,52 +16,6 @@ public class User {
     private String token;
     private long gmtCreate;
     private long gmtModified;
+    private String avatarUrl;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public long getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(long gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public long getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(long gmtModified) {
-        this.gmtModified = gmtModified;
-    }
 }

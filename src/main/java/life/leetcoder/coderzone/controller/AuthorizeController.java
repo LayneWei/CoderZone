@@ -38,6 +38,7 @@ public class AuthorizeController {
     private UserMapper userMapper;
 
 
+
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
                            @RequestParam(name = "state") String state,
@@ -51,16 +52,17 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
         /* use accesstokenDTO to get User */
-        GitHubUser githubUser = gitHubProvider.getUser(accessToken);
-        if (githubUser != null) {
+        GitHubUser gitHubUser = gitHubProvider.getUser(accessToken);
+        if (gitHubUser != null) {
             /* store user information to database*/
             User user = new User();
-            user.setAccountId(String.valueOf(githubUser.getName()));
-            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(gitHubUser.getName()));
+            user.setName(gitHubUser.getName());
             String token = UUID.randomUUID().toString();
             user.setToken(token);
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(gitHubUser.getAvatarUrl());
             userMapper.insert(user);
             /* add cookie for maintaining log-in state */
             response.addCookie(new Cookie("token",token));

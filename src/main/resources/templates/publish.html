@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:>
+<head>
+    <title>Publish - CoderZone</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="/css/coderzone.css">
+    <script src="js/bootstrap.bundle.js" type="application/javascript"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">CoderZone</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="people/topics" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+        </ul>
+        <div th:if="${session.user==null}" class="nav-item">
+            <a class="nav-item " href="https://github.com/login/oauth/authorize?client_id=e8e7f530973f2ab0fcf3&redirect_uri=http://localhost:8886/callback&scope=user&state=1" tabindex="-1" aria-disabled="true">Log in</a>
+        </div>
+        <div th:unless="${session.user==null}" class="nav-item dropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/publish" class="nav-link">Publish</a>
+                </li>
+                <li class="nav-item">
+                    <a th:text="${session.user.getName()}" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Message</a>
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="container-fluid main" >
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <h2>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                    </svg>publish
+                </h2>
+                <hr>
+                <form action="/publish" method="post">
+                    <div class="form-group">
+                        <label for="title" >Question Title (A brief description of your question)</label>
+                        <input type="text" class="form-control" id="title" th:value="${title}" name="title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Specify your question</label>
+                        <textarea class="form-control" id="description" th:text="${description}" name="description" cols="30" rows="10" placeholder="Type in your description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tag"></label>
+                        <input type="text" class="form-control" id="tag" th:value="${tag}" name="tag" placeholder="Type in the tags separated by comma">
+                    </div>
+                        <span class="alert alert-danger" th:if="${error}!=null" th:text="${error}" role="alert" ></span>
+                    <button type="submit" class="btn btn-success btn-publish">publish</button>
+                </form>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 main-right" >
+                <h3>Guide for publishing questions</h3>
+                <p>•Question Title: briefly describe your questions, less than 100 characters</p>
+                <p>•Question Description: provide more detailed description for your questions</p>
+                <p>•Tag Selection: select one or multiple tags, separated by comma, less than 6 words</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

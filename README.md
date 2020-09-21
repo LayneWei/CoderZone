@@ -16,6 +16,9 @@
 ## Tool
  [Git](https://git-scm.com/downloads)  
  [Visual Paradigm](https://www.visual-paradigm.com/)
+ [Flyway](https://flywaydb.org/getstarted/firststeps/maven)
+ [Lombok](https://projectlombok.org/setup/maven)
+
  
 ## Script  
 '''sql
@@ -45,6 +48,12 @@ create table USER
 ### 2. Database connection and management
 ##### 2.1 Initialize and connect to H2 database
 ##### 2.2 Incorporate MyBatis for inserting data
-##### 2.3 Use Flayway to update database
+##### 2.3 Use Flayway for database migration and update
+##### 2.4 Store question info published by user
+
+### 3. Publish question
+##### 3.1 Submit to publish question, store question in question database and display in home page
+##### 3.2 Display questions in home page and implement pagination
+
 
 
