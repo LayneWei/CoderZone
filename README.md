@@ -4,7 +4,7 @@
  Spring Boot  
  BootStrap     
 ## Reference
- [Spring](https://spring.io/guides)          
+ [Spring](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/index.html)          
  [Spring Web](https://spring.io/guides/gs/serving-web-content/)  
  [Elastic community](https://elasticsearch.cn/explore)  
  [Bootstrap](https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys)  
@@ -52,8 +52,11 @@ create table USER
 ##### 2.4 Store question info published by user
 
 ### 3. Publish question
-##### 3.1 Submit to publish question, store question in question database and display in home page
+##### 3.1 Submit to publish question, store question in question database
 ##### 3.2 Display questions in home page and implement pagination
+##### 3.3 Display questions published by a user in their profile page
+
+### 4. 
 
 
 
