@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>CoderZone</title>
+    <title th:text="${sectionName}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-grid.min.css">
@@ -16,21 +16,13 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 ">
-            <h2 class="list">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-ul" fill="currentColor"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                </svg>
-                Explore
-            </h2>
+            <h2 class="list" th:text="${sectionName}"></h2>
             <hr>
             <ul class="list-unstyled">
                 <li class="media" th:each="question:${pagination.questions}">
                     <img th:src="${question.user.avatarUrl}" class="mr-3" alt="...">
                     <div class="media-body">
                         <h5 class="mt-0 mb-1" th:text="${question.title}">List-based media object</h5>
-                        <span th:text="${question.description}"></span><br>
                         <span class="text-desc"><span th:text="${question.commentCount}"></span> replies, <span
                                 th:text="${question.viewCount}"></span> views, <span
                                 th:text="${#dates.format(question.gmtCreate,'MM-dd-yyyy HH:mm')}"></span></span>
@@ -39,23 +31,23 @@
             </ul>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item" th:if="${pagination.showFirstPage}==true">
-                        <a class="page-link" th:href="@{/(page=1)}" aria-label="Previous">
+                    <li class="page-item" th:if="${pagination.showFirstPage}">
+                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${1})}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li class="page-item" th:if="${pagination.showPrevious}==true">
-                        <a class="page-link" th:href="@{/(page=${pagination.page}-1)}"><</a>
+                    <li class="page-item" th:if="${pagination.showPrevious}">
+                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${pagination.page - 1})}"><</a>
                     </li>
                     <li class="page-item" th:each="page:${pagination.pages}" th:class="${pagination.page==page}?'active page-item':'disabled'">
-                        <a class="page-link " th:href="@{/(page=${page})}" th:text="${page}"></a>
+                        <a class="page-link " th:href="@{'/profile/'+${section}(page=${page})}" th:text="${page}"></a>
                     </li>
-                    <li class="page-item" th:if="${pagination.showNext}==true">
-                        <a class="page-link" th:href="@{/(page=${pagination.page}+1)}">></a>
+                    <li class="page-item" th:if="${pagination.showNext}">
+                        <a class="page-link" th:href="@{'/profile/'+${section}(page=${pagination.page +1})}">></a>
                     </li>
                     <li class="page-item">
                         <a class="page-link" th:if="${pagination.showEndPage}==true"
-                           th:href="@{/(page=${pagination.totalPage})}" aria-label="Next">
+                           th:href="@{'/profile/'+${section}(page=${pagination.totalPage})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -63,13 +55,17 @@
             </nav>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 main-right">
-            <h3>Hot Topic</h3>
-            <p>•Question Title: briefly describe your questions, less than 100 characters</p>
-            <p>•Question Description: provide more detailed description for your questions</p>
-            <p>•Tag Selection: select one or multiple tags, separated by comma, less than 6 words</p>
+            <div class="list-group">
+                <a href="/profile/questions" th:class="${section=='questions'}?'active list-group-item list-group-item-action':'list-group-item list-group-item-action'">My Question</a>
+                <a href="/profile/replies" th:class="${section=='replies'}?'active list-group-item list-group-item-action':'list-group-item list-group-item-action'">Latest Repies
+                <span class="badge badge-secondary">14</span></a>
+                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
+            </div>
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

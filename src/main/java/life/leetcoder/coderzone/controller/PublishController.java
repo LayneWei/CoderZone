@@ -43,14 +43,18 @@ public class PublishController {
         model.addAttribute("title",title);
         model.addAttribute("description",description);
         model.addAttribute("tag",tag);
+
         if (title == null || title == "") {
             model.addAttribute("error","title cannnot be empty");
+            return "publish";
         }
         if (description == null || description == "") {
             model.addAttribute("error","description cannnot be empty");
+            return "publsih";
         }
         if (tag == null || tag == "") {
             model.addAttribute("error","tag cannnot be empty");
+            return "publish";
         }
 
         User user = null;
