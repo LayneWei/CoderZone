@@ -21,7 +21,7 @@
 
  
 ## Script  
-'''sql
+'''sql  
 create table USER
 (
 	ID INT auto_increment,
@@ -33,8 +33,11 @@ create table USER
 	constraint USER_PK
 		primary key (ID)
 );
+'''  
 
-
+'''bash/zsh  
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 '''
  
 ## Function Implemented
@@ -57,6 +60,11 @@ create table USER
 ##### 3.3 Display questions published by a user in their profile page
 
 ### 4. 
+
+
+## Work Flow
+### 1. GitHub User LogIN
+
 
 
 
