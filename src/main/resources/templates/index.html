@@ -29,7 +29,9 @@
                 <li class="media" th:each="question:${pagination.questions}">
                     <img th:src="${question.user.avatarUrl}" class="mr-3" alt="...">
                     <div class="media-body">
-                        <h5 class="mt-0 mb-1" th:text="${question.title}">List-based media object</h5>
+                        <h5 class="mt-0 mb-1">
+                            <a th:href="@{'/question/'+${question.id}}" th:text="${question.title}"></a>
+                        </h5>
                         <span th:text="${question.description}"></span><br>
                         <span class="text-desc"><span th:text="${question.commentCount}"></span> replies, <span
                                 th:text="${question.viewCount}"></span> views, <span

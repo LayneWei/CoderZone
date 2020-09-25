@@ -23,6 +23,7 @@
                 </h2>
                 <hr>
                 <form action="/publish" method="post">
+                    <input type="hidden" name="id" th:value="${id}">
                     <div class="form-group">
                         <label for="title" >Question Title (A brief description of your question)</label>
                         <input type="text" class="form-control" id="title" th:value="${title}" name="title" placeholder="Title">

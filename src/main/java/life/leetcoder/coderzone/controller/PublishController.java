@@ -1,12 +1,14 @@
 package life.leetcoder.coderzone.controller;
 
-import life.leetcoder.coderzone.mapper.QuestionMapper;
+import life.leetcoder.coderzone.dto.QuestionDTO;
 import life.leetcoder.coderzone.model.Question;
 import life.leetcoder.coderzone.model.User;
+import life.leetcoder.coderzone.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,8 +21,20 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class PublishController {
+
     @Autowired
-    private QuestionMapper questionMapper;
+    private QuestionService questionService;
+
+    @GetMapping("/publish/{id}")
+    public String edit(@PathVariable(name="id") Integer id,
+                       Model model){
+        QuestionDTO question = questionService.getById(id);
+        model.addAttribute("title",question.getTitle());
+        model.addAttribute("description",question.getDescription());
+        model.addAttribute("tag",question.getTag());
+        model.addAttribute("id",question.getId());
+        return "publish";
+    }
 
     @GetMapping("/publish")
     public String publish(){
@@ -29,9 +43,10 @@ public class PublishController {
 
     @PostMapping(value="/publish")
     public String doPublish(
-            @RequestParam("title") String title,
-            @RequestParam("description") String description,
-            @RequestParam("tag") String tag,
+            @RequestParam(value = "title",required = false) String title,
+            @RequestParam(value = "description", required = false) String description,
+            @RequestParam(value = "tag", required = false) String tag,
+            @RequestParam(value = "id", required = false) Integer id,
             Model model,
             HttpServletRequest request){
 
@@ -63,9 +78,8 @@ public class PublishController {
         question.setDescription(description);
         question.setTag(tag);
         question.setCreator(user.getId());
-        question.setGmtCreate(System.currentTimeMillis());
-        question.setGmtModified(question.getGmtCreate());
-        questionMapper.create(question);
+        question.setId(id);
+        questionService.createOrUpdate(question);
 
         return "redirect:/";
     }
