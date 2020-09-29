@@ -68,6 +68,9 @@ mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
 ### 4. 
 Integrated Mybatis generator to handle mapper and models
 
+Customize error handler to deal with question not in db, client error and servcer error
+
+
 ## Work Flow
 ### 1. GitHub User LogIN
 
