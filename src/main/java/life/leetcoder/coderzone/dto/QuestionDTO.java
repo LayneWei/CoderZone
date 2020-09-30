@@ -5,7 +5,6 @@ import lombok.Data;
 
 /**
  * @author laynewei
- * @time 9/20/20 7:54 PM
  * @e-mail lengning_wei@berkeley.edu
  */
 @Data

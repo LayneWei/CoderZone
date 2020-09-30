@@ -2,7 +2,6 @@ package life.leetcoder.coderzone.enums;
 
 /**
  * @author laynewei
- * @time 9/28/20 1:42 AM
  * @e-mail lengning_wei@berkeley.edu
  */
 public enum CommentTypeEnum {

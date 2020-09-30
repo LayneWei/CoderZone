@@ -18,9 +18,7 @@ import java.util.UUID;
 
 /**
  * @author laynewei
- * @date 9/18/20 10:35 PM
  * @e-mail lengning_wei@berkeley.edu
- * @description authorize user to log in and store cookie
  */
 @Controller
 public class AuthorizeController {

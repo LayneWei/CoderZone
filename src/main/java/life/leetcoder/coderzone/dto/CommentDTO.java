@@ -1,15 +1,22 @@
 package life.leetcoder.coderzone.dto;
 
+import life.leetcoder.coderzone.model.User;
 import lombok.Data;
 
 /**
  * @author laynewei
- * @time 9/28/20 12:21 AM
  * @e-mail lengning_wei@berkeley.edu
  */
 @Data
 public class CommentDTO {
-    private long parentId;
+
+    private Long id;
+    private Long parentId;
     private Integer type;
+    private Long commentator;
+    private Long gmtCreate;
+    private Long gmtModified;
+    private Long likeCount;
     private String content;
+    private User user;
 }

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author laynewei
- * @time 9/20/20 2:29 AM
  * @e-mail lengning_wei@berkeley.edu
  */
 @Controller

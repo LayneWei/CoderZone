@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author laynewei
- * @date 9/18/20 10:35 PM
  * @e-mail lengning_wei@berkeley.edu
- * @description if user cookie exists, go to user session, otherwise go to home page
  */
 
 @Controller

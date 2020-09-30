@@ -15,7 +15,6 @@ import java.util.List;
 
 /**
  * @author laynewei
- * @time 9/24/20 7:40 AM
  * @e-mail lengning_wei@berkeley.edu
  */
 

@@ -16,7 +16,6 @@ import java.io.PrintWriter;
 
 /**
  * @author laynewei
- * @time 9/25/20 11:32 AM
  * @e-mail lengning_wei@berkeley.edu
  */
 @ControllerAdvice
